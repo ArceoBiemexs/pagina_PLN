@@ -1,10 +1,11 @@
 import streamlit as st
-import pyttsx3
+from gtts import gTTS
+import os
 
 def text_to_audio(text):
-    engine = pyttsx3.init()
-    engine.say(text)
-    engine.runAndWait()
+    tts = gTTS(text=text, lang='es')
+    tts.save("output.mp3")
+    os.system("mpg321 output.mp3")
 
 def main():
     st.title("Conversor de Texto a Audio")
@@ -19,4 +20,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
